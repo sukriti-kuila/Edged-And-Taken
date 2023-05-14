@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="normal/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read The Blog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+</head>
+<body>
+<section>
+	  	<div class="card mb-3" style="margin-right: 6%; margin-left: 6%;" th:if="${blog}">
+		  
+		  <div class="card-body">
+		    <h3 class="card-title text-center text-dark" style="text-transform: uppercase;" th:text="${blog.title}"></h3>
+		    <hr>
+			<img class="card-img-top mt-2 mb-2"  th:src="@{'/img/'+${blog.image}}" style="width:100%; height: 350px; border-radius:10px" alt="Thumbnail" >
+		    <hr>  
+		    <p class="card-text" style="letter-spacing: 1px;"> <i class="fa-solid fa-feather"></i> <b class="text-dark" th:utext="${'Author : '+{blog.user.name}}"></b></p>
+		    <p class="card-text" th:utext="${blog.description}">.</p>
+		    
+		  </div>
+		</div>
+		<h2 class="text-danger text-center" th:unless="${blog}">You don't have permission to view this! </h2>
+
+</section>
+</body>
+</html>

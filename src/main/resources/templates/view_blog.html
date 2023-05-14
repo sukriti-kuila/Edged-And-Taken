@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read The Blog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+</head>
+<body>
+<section>
+  <div class="card mb-3 mt-4" style="margin-right: 6%; margin-left: 6%" >
+		  <img class="card-img-top"  th:src="@{'/img/'+${blog.image}}" style="width:100%; height: 330px" alt="Thumbnail" >
+		  <div class="card-body" >
+		    <h4 class="card-title text-center" style="color:red; text-transform: uppercase;" th:text="${blog.title}"></h4>
+			<b ></b>
+		      
+		    <p class="card-text" th:utext="${blog.description}">.</p>
+		    <p class="card-text"><small class="text-muted" th:utext="${'Author: '+{blog.user.name}}"></small></p>
+		  </div>
+		</div>
+
+</section>
+</body>
+</html>

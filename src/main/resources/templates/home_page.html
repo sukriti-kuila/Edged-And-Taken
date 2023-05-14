@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="normal/base::layout(~{::section})">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+<section>
+		<div class="container" style="display:flex;justify-content:flex-end;margin-top:1px;margin-right:-16px">
+			  <div class="input-group" style="width:300px;">
+			    <div class="form-outline">
+			      <input type="search" id="searchInput" class="form-control" placeholder="Search..." style="height:38px;" />
+			    </div>
+			    <button onclick="searchBlogs()" type="button" class="btn btn-primary" style="height: 38px; margin-left:-2px;">
+			      <i class="fas fa-search" style="font-size: 20px;"></i>
+			    </button>
+			  </div>
+		</div>
+
+		<div class="row mb-3 mt-3" id="blogs-container" style="margin-right: 3%; margin-left: 3%">
+		<div class="col-md-4 mt-3" th:each= "b : ${blogs}">
+			<div class="card-deck">
+			  <div class="card  blog-card" th:attr="data-title=${b.title}">
+			    <img class="card-img-top" th:src="@{'/img/'+${b.image}}" style="height:180px; width:100%; object-fit:cover">
+			    <div class="card-body">
+			      <h5 class="card-title text-center" th:text="${b.title}" style="text-transform: uppercase">Card title</h5>			   
+			      <p class="card-author text-center" th:text="${'- BY '+b.user.name}" style="text-transform: uppercase; color:#00008B; font-weight: bold;">Author name</p>			   
+			      <div class="container text-center"> 
+			      	<button class="btn btn-success mt-2 text-center" th:if="${b.paid=='No'}">
+			      		<a th:href="@{'/read/'+${b.id}}" style="text-decoration:none; color:white"> Read Here</a>
+			      	</button>		
+			      	<button onclick="paymentStart()"
+			      		  th:if="${b.paid=='Yes'}"
+						  th:id="'payment_field' + ${b.id}"
+						  th:value="${b.id}"
+						  class="btn btn-success mt-2 text-center"
+						  th:attr="data-blogid=${b.id}"
+					>
+						  Unlock 
+						  <i class="fa-solid fa-unlock"></i>
+					</button> 
+					<!-- <button onclick="paymentStart()"
+        th:if="${b.paid=='Yes' and map[user.name.trim()] != null and !map[user.name.trim()].contains(b.id)}"
+        th:id="'payment_field' + ${b.id}"
+        th:value="${b.id}"
+        class="btn btn-success mt-2 text-center"
+        th:attr="data-blogid=${b.id}">
+        Unlock 
+        <i class="fa-solid fa-unlock"></i>
+</button>
+ -->
+					
+	      	
+			      </div>
+			      <!-- Time !important -->
+			     <!--  <p class="card-text text-center mt-3"><small class="text-muted ">Last updated 3 mins ago</small></p> -->
+	
+			    </div>
+			  </div>
+			</div>
+		 </div>	
+	</div> 
+	<!-- search results container -->
+  <div class="row mb-3 mt-3" style="margin-right: 3%; margin-left: 3%" id="searchResults">
+  	
+  </div>
+</section>
+
+
+</body>
+</html>

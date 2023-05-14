@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="normal/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+</head>
+<body>
+<section class="profile-body">
+  	<div class="container d-flex justify-content-center mt-5">
+        	<div class="profile-card">
+        				<div class="profile-image text-center mt-4">
+        					<img th:src="@{/img/default.png}" class="img-fluid rounded-circle img-thumbnail" width="130">	
+        				</div>
+        		<div class="profile text-center mt-2 text-white">	
+        				<h3 class="mt-2" th:text="${user.name}"></h3>
+        				<span class="d-block" th:text="${user.email}"></span>
+        				<span class="d-block mt-3" th:text="${user.description}">Software developer and <br> Java Architect</span>
+        		</div>
+        	</div>	
+        </div>
+</section>
+</body>
+</html>
